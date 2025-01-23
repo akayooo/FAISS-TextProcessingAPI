@@ -3,84 +3,84 @@
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)  
 ![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)  
 
-FAISS Text Processing API – это мощный инструмент для обработки текстов с использованием технологий FAISS, Sentence Transformers и LangChain. Этот проект предоставляет RESTful API для создания индексов, хранения и извлечения информации, а также генерации ответов на основе вопросов.  
+The FAISS Text Processing API is a powerful tool for text processing using FAISS, Sentence Transformers, and LangChain technologies. This project provides a RESTful API for creating indexes, storing and retrieving information, and generating answers to questions.  
 
-## 📋 Основные возможности  
+## 📋 Key Features  
 
-- **Создание FAISS индексов:** автоматическое разбиение текста и генерация эмбеддингов.  
-- **Обработка естественного языка:** использование генеративных моделей (например, GPT-Neo, FLAN-T5).  
-- **RESTful API:** удобное взаимодействие с системой через HTTP-запросы.  
-- **Поддержка многоязычности:** работа с английским и русским языками.  
-- **Конвертация изображений в текст:** интеграция с Tesseract для извлечения текста и BLIP для генерации описаний изображений с последующим переводом на русский язык.
+- **FAISS Index Creation:** Automatic text splitting and embedding generation.  
+- **Natural Language Processing:** Use of generative models (e.g., GPT-Neo, FLAN-T5).  
+- **RESTful API:** Convenient interaction with the system via HTTP requests.  
+- **Multilingual Support:** Works with English and Russian languages.  
+- **Image-to-Text Conversion:** Integration with Tesseract for text extraction and BLIP for generating image descriptions with subsequent translation into Russian.
 
-## 🛠 Требования  
+## 🛠 Requirements  
 
-- Python 3.9 или новее  
-- Установленные библиотеки из requirements.txt  
+- Python 3.9 or newer  
+- Installed libraries from requirements.txt  
 
-## 📦 Установка  
+## 📦 Installation  
 
-1. Клонируйте репозиторий:  
+1. Clone the repository:  
    
    ```bash
    git clone https://github.com/yourusername/your-repo-name.git
    cd your-repo-name
    ```
 
-2. Создайте и активируйте виртуальное окружение:  
+2. Create and activate a virtual environment:  
    
    ```bash
    python -m venv venv
-   source venv/bin/activate  # Для Linux/MacOS
-   venv\Scripts\activate     # Для Windows
+   source venv/bin/activate  # For Linux/MacOS
+   venv\Scripts\activate     # For Windows
    ```
 
-3. Установите зависимости:  
+3. Install dependencies:  
    
    ```bash
    pip install -r requirements.txt
    ```
 
-4. Создайте .env файл и добавьте ваш Hugging Face токен:  
+4. Create a .env file and add your Hugging Face token:  
    
    ```env
    TOKEN=your_huggingface_api_token
    ```
 
-## 🚀 Запуск  
+## 🚀 Running  
 
-1. Запустите FastAPI сервер:  
+1. Start the FastAPI server:  
    
    ```bash
    python api.py
    ```
 
-2. Откройте браузер и перейдите на [http://127.0.0.1:8000](http://127.0.0.1:8000) для проверки работы API.  
+2. Open your browser and go to [http://127.0.0.1:8000](http://127.0.0.1:8000) to check the API's functionality.  
 
-## 🗂 Эндпоинты  
+## 🗂 Endpoints  
 
-### 1. Проверка статуса API  
+### 1. API Status Check  
 **GET /**  
-Возвращает сообщение о том, что API работает.  
+Returns a message indicating that the API is working.  
 
-**Пример ответа:**  
+**Example response:**  
 
 ```json
 {
-    "message": "API работает"
+    "message": "API is working"
 }
 ```
 
-### 2. Создание FAISS индекса  
+### 2. Create FAISS Index  
 **POST /create_faiss_index**  
-Создает FAISS индекс на основе загруженного файла.  
+Creates a FAISS index based on the uploaded file.  
 
-**Параметры:**  
-- model_name (строка) – Название используемой модели.  
-- chat_id (строка) – Идентификатор чата.  
-- file (файл) – Текстовый файл для обработки.  
+**Parameters:**  
+- model_name (string) – Name of the model to be used.  
+- chat_id (string) – Chat identifier.  
+- file (file) – Text file for processing.  
 
-**Пример запроса:**  
+**Example request:**  
 
 ```bash
 curl -X POST "http://127.0.0.1:8000/create_faiss_index" \
@@ -89,16 +89,16 @@ curl -X POST "http://127.0.0.1:8000/create_faiss_index" \
      -F "file=@example.txt"
 ```
 
-### 3. Получение ответа на вопрос  
+### 3. Get Answer to a Question  
 **POST /answering**  
-Отвечает на вопрос с использованием созданного FAISS индекса.  
+Answers a question using the created FAISS index.  
 
-**Параметры:**  
-- model_name (строка) – Название используемой модели.  
-- chat_id (строка) – Идентификатор чата.  
-- question (строка) – Вопрос, на который нужно ответить.  
+**Parameters:**  
+- model_name (string) – Name of the model to be used.  
+- chat_id (string) – Chat identifier.  
+- question (string) – Question to be answered.  
 
-**Пример запроса:**  
+**Example request:**  
 
 ```bash
 curl -X POST "http://127.0.0.1:8000/answering" \
@@ -107,7 +107,7 @@ curl -X POST "http://127.0.0.1:8000/answering" \
      -F "question=What is FAISS?"
 ```
 
-**Пример ответа:**  
+**Example response:**  
 
 ```json
 {
@@ -115,28 +115,28 @@ curl -X POST "http://127.0.0.1:8000/answering" \
 }
 ```
 
-## 🖼 Конвертация изображений в текст  
+## 🖼 Image-to-Text Conversion  
 
-Этот проект также включает метод для конвертации изображений в текст с использованием OCR (оптическое распознавание символов) и генерации описаний изображений с помощью BLIP. Кроме того, с помощью модели перевода текста описание изображения переводится с английского на русский.
+This project also includes a method for converting images to text using OCR (Optical Character Recognition) and generating image descriptions using BLIP. Additionally, the image description is translated from English to Russian using a translation model.
 
-### Основные этапы обработки изображения:
+### Main Steps of Image Processing:
 
-1. **Извлечение текста с изображения (OCR):** С использованием Tesseract извлекается текст с изображения на русском и английском языках.  
-2. **Генерация описания изображения:** Модель BLIP генерирует описание изображения на английском языке.  
-3. **Перевод на русский язык:** С помощью модели перевода (Helsinki-NLP/opus-mt-en-ru) описание изображения переводится на русский язык.  
-4. **Сохранение результатов:** Все результаты сохраняются в текстовом файле.
+1. **Text Extraction from Image (OCR):** Using Tesseract, text is extracted from the image in Russian and English.  
+2. **Image Description Generation:** The BLIP model generates an image description in English.  
+3. **Translation into Russian:** Using the translation model (Helsinki-NLP/opus-mt-en-ru), the image description is translated into Russian.  
+4. **Saving Results:** All results are saved in a text file.
 
-### Пример использования:
+### Example Usage:
 
 ```
-# Пример работы
-# Путь к загруженному изображению (замените на реальный путь)
-uploaded_image_path = "/home/akayo/Загрузки/Парус.png"  # Укажите путь к файлу
+# Example usage
+# Path to the uploaded image (replace with the actual path)
+uploaded_image_path = "/home/akayo/Downloads/Sail.png"  # Specify the file path
 
-# Вызов главной функции
+# Call the main function
 main(uploaded_image_path)
 ```
 
-## 📚 Лицензия  
+## 📚 License  
 
-Этот проект распространяется под лицензией [MIT](LICENSE).  
+This project is licensed under the [MIT](LICENSE) license.
