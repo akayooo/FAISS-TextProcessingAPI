@@ -140,3 +140,14 @@ main(uploaded_image_path)
 ## 📚 License  
 
 This project is licensed under the [MIT](LICENSE) license.
+
+## 📧 **Contact**
+
+For questions or feedback, feel free to reach out:
+
+- **Email**: nikita26.08.98nesterov@gmail.com
+- **GitHub**: [AKAYO](https://github.com/akayooo)
+
+---
+
+Happy modeling! 🎉
